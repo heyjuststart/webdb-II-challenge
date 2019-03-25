@@ -1,16 +1,15 @@
 const express = require('express');
 const helmet = require('helmet');
-const knex = require('knex');
-const knexConfig = require('./knexfile');
+const cors = require('cors');
 
-const db = knex(knexConfig.development);
+const zoosRouter = require('./zoos/router');
 const server = express();
-
 server.use(express.json());
 server.use(helmet());
+server.use(cors());
 
-// endpoints here
-
+server.use('/api/zoos', zoosRouter);
+server.use('/', (req, res) => res.send('API up and running!'));
 const port = 3300;
 server.listen(port, function() {
   console.log(`\n=== Web API Listening on http://localhost:${port} ===\n`);
