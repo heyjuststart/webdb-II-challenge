@@ -1,13 +1,5 @@
 const db = require('../dbConfig');
 
-module.exports = {
-  get,
-  getById,
-  insert,
-  update,
-  remove
-};
-
 const get = () => db('zoos');
 
 const getById = id =>
@@ -29,3 +21,12 @@ const remove = id =>
   db('zoos')
     .where({ id })
     .del();
+
+module.exports = {
+  get,
+  getById,
+  insert,
+  update,
+  remove
+};
+
